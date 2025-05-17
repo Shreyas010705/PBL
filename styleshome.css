@@ -1,0 +1,125 @@
+/* General Reset */
+body, h1, h2, p, a {
+    margin: 0; /* Remove default margin from all elements */
+    padding: 0; /* Remove default padding from all elements */
+    font-family: 'Arial', sans-serif; /* Set default font for the page */
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
+}
+
+/* Body Styling */
+body {
+    height: 100vh; /* Set body height to full viewport height */
+    background-color: #800080; /* Set a solid dark purple background color */
+    background-image: url('wall.jpg'); /* Add a background image (replace with your image path) */
+    background-repeat: no-repeat; /* Prevent the background image from repeating */
+    background-position: center center; /* Center the background image */
+    background-size: cover; /* Scale the image to cover the entire body area */
+}
+
+/* Header Section - Backgroundless for Text */
+header {
+    text-align: center; /* Center-align text within the header */
+    padding: 2rem 1rem; /* Add padding around the header */
+    background-color: transparent; /* Make header background colorless (transparent) */
+    margin-bottom: 1.5rem; /* Add space below the header (adjust as needed) */
+}
+
+/* Header Text Styles - Suitable for Dark Purple Background */
+header h1 {
+    font-size: 2.5rem; /* Set font size for main heading */
+    font-weight: bold; /* Make the heading bold */
+    color: #FFD700; /* Gold color for contrast against dark purple background */
+}
+
+header p {
+    font-size: 1.2rem; /* Set font size for paragraph text in header */
+    margin-top: 1.5rem; /* Add space above welcome line (adjust as needed) */
+    margin-bottom: 1rem; /* Add space below the paragraph */
+    color: #FFD700; /* Gold color for readability on dark purple background */
+}
+
+/* Description Section - Backgroundless for Text and Added Space Above */
+.description {
+    max-width: 800px; /* Limit maximum width of description section */
+    margin: 2rem auto 2rem; /* Center horizontally and add space above and below it */
+    padding: 1rem 1.5rem; /* Add padding inside description section for spacing */
+    background-color: transparent; /* Make description section background colorless (transparent)*/
+}
+
+.description p {
+    font-size: 1.1rem; /* Set font size for paragraph text in description section */
+    color: #FFFDD0; /* Soft cream color for readability against dark purple background*/
+}
+
+/* Level Selection Section Styling - Adjust as needed if separate from description*/
+.level-selection {
+   text-align: center;
+   margin: 2rem auto;
+   padding: 1rem;
+   max-width: 800px;
+}
+
+.level-container, .buttons-container {
+   display: flex;
+   justify-content: center;
+   gap: 1rem;
+   flex-wrap: wrap;
+}
+
+h2 {
+   font-size: 1.8rem;
+   color: #FFFDD0; /* Soft cream to match description and ensure visibility on dark purple*/
+   margin-bottom: 1rem;
+}
+
+/* Button Styling - Keep existing button styles unchanged */
+.header-buttons {
+    position: absolute; /* Position buttons absolutely within the header */
+    top: 1rem; /* Align buttons to the top of the header */
+    right: 1rem; /* Align buttons to the right side of the header */
+    display: flex; /* Use flexbox layout for buttons container */
+    gap: 1rem; /* Add space between buttons */
+}
+
+.header-btn {
+    background-color: white; /* Change button background color to white (as per previous request) */
+    color: #0056b3; /* Set button text color to dark blue for contrast */
+    border: none; /* Remove default border from buttons */
+    padding: 0.5rem 1rem; /* Add padding inside buttons for better click area */
+    border-radius: 5px; /* Round corners of buttons slightly */
+    font-size: 1rem; /* Set button text size */
+    cursor: pointer; /* Change cursor to pointer on hover for better UX */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition effect for hover changes */
+}
+
+.header-btn:hover {
+    background-color: #0056b3; /* Darken button color on hover for visual feedback */
+    color: white; /* Change text color to white on hover for contrast against dark blue background*/
+}
+
+/* Level Button Styles - Ensure they are also white with dark blue text*/
+.btn {
+   text-decoration: none;
+   font-size: 1.1rem;
+   color: #0056b3; /* Dark blue text color for level buttons (as per previous request)*/
+   background-color: white; /* White background for level buttons*/
+   padding: 0.8rem 1.5rem;
+   border-radius: 5px;
+   transition: background-color 0.3s, color 0.3s;
+}
+
+.btn:hover {
+   background-color: #0056b3; /* Darken button color on hover for visual feedback*/
+   color: white; /* Change text color to white on hover for contrast against dark blue background*/
+}
+
+/* Footer Section Styling - Maintain existing styles or adjust as needed*/
+footer {
+   font-size: 0.9rem;
+   color: white;
+   background-color: rgba(0, 0, 0, 0.7); 
+   width: 100%; 
+   text-align: center;
+   padding: 1rem;
+   margin-top: 2rem;
+}

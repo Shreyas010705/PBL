@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AtlasMind Login</title>
+    <!-- Ensure styleslogin.css is in the correct location -->
+    <link rel="stylesheet" href="styleslogin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <p class="site-name" style="font-size: 50px;">AtlasMind</p>
+    </div>
+
+    <!-- Logo -->
+    <img src="htmllogo.png.jpg" alt="Logo" class="logo"> <!-- Ensure correct path -->
+
+    <!-- Login Container -->
+    <div class="login-container">
+        <i class="fas fa-user-circle login-icon"></i>
+
+        <!-- Login Form -->
+        <form id="loginForm">
+            <input type="email" name="email" id="email" placeholder="Enter your email" required>
+            <input type="password" name="password" id="password" placeholder="Enter your password" required>
+            <button type="submit">Login</button>
+            <a href="#" id="showForgotPassword">Forgot Password?</a>
+            <a href="AtlasHome.html">Guest Account</a>
+        </form>
+
+        <!-- Forgot Password Form -->
+        <form id="forgotPasswordForm" style="display: none;">
+            <p>Enter your email to reset your password</p>
+            <input type="email" id="resetEmail" placeholder="Enter your email" required>
+            <button type="submit">Submit</button>
+            <a href="#" id="showLoginForm">Back to Login</a>
+        </form>
+
+        <!-- Error Message -->
+        <div id="error-message" style="color: red; margin-top: 10px; display: none;"></div>
+    </div>
+
+    <!-- Access Code Modal -->
+    <div id="accessModal" class="access-modal" style="display:none;">
+        <div class="access-modal-content">
+            <h2>Enter Access Code</h2>
+            <input type="password" id="accessCodeInput" placeholder="Access Code">
+            <div class="access-modal-buttons">
+                <button onclick="verifyAccessCode()">Submit</button>
+                <button onclick="cancelAccessCode()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JS Logic -->
+    <script>
+        let attemptCount = 0;
+        const maxAttempts = 3;
+
+        document.getElementById('loginForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+
+            if (attemptCount >= maxAttempts) {
+                showMaxAttemptPopup();
+                return;
+            }
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            try {
+                const response = await fetch('http://localhost:3000/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+
+                const data = await response.json();
+                console.log('Login response:', data);
+
+                if (response.ok) {
+                    document.getElementById('accessModal').style.display = 'block';
+                    document.getElementById('error-message').style.display = 'none';
+                } else {
+                    attemptCount++;
+                    document.getElementById('error-message').innerText = data.message;
+                    document.getElementById('error-message').style.display = 'block';
+
+                    if (attemptCount >= maxAttempts) {
+                        showMaxAttemptPopup();
+                    }
+                }
+            } catch (error) {
+                console.error('Login error:', error);
+                document.getElementById('error-message').innerText = 'Server error. Please try again later.';
+                document.getElementById('error-message').style.display = 'block';
+            }
+        });
+
+        function showMaxAttemptPopup() {
+            const popup = document.createElement('div');
+            popup.textContent = "❌ You have exceeded the maximum number of login attempts.";
+            popup.style.position = 'fixed';
+            popup.style.top = '20px';
+            popup.style.left = '50%';
+            popup.style.transform = 'translateX(-50%)';
+            popup.style.backgroundColor = '#e74c3c';
+            popup.style.color = 'white';
+            popup.style.padding = '15px 25px';
+            popup.style.fontSize = '16px';
+            popup.style.borderRadius = '8px';
+            popup.style.zIndex = '9999';
+            document.body.appendChild(popup);
+
+            // Disable login form inputs
+            document.getElementById('email').disabled = true;
+            document.getElementById('password').disabled = true;
+            document.querySelector('#loginForm button[type="submit"]').disabled = true;
+
+            setTimeout(() => popup.remove(), 5000);
+        }
+
+        async function verifyAccessCode() {
+            const accessCode = document.getElementById('accessCodeInput').value;
+            if (!accessCode) {
+                alert('Please enter the access code.');
+                return;
+            }
+
+            try {
+                const response = await fetch('http://localhost:3000/verify-access-code', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ accessCode })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    window.location.href = 'AtlasHome.html';
+                } else {
+                    alert(data.message);
+                }
+            } catch (error) {
+                console.error('Access code error:', error);
+                alert('Server error. Please try again later.');
+            }
+        }
+
+        function cancelAccessCode() {
+            document.getElementById('accessModal').style.display = 'none';
+        }
+
+        document.getElementById('showForgotPassword').addEventListener('click', function(event) {
+            event.preventDefault();
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('forgotPasswordForm').style.display = 'block';
+        });
+
+        document.getElementById('showLoginForm').addEventListener('click', function(event) {
+            event.preventDefault();
+            document.getElementById('forgotPasswordForm').style.display = 'none';
+            document.getElementById('loginForm').style.display = 'block';
+        });
+    </script>
+</body>
+</html>
+

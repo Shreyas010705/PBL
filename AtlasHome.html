@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AtlasMind - C Programming Courses</title>
+    <link rel="stylesheet" href="styleshome.css">
+    <script>
+        // JavaScript to handle logout function
+        function logout() {
+            window.location.href = "AtlasLogin.html";
+        }
+
+        // JavaScript to show level options
+        function showLevelOptions(level) {
+            const options = document.getElementById('level-options');
+            options.style.display = 'block';
+            document.getElementById('selected-level').innerText = level;
+            document.getElementById('level-dropdown').innerHTML = `
+                <select onchange="handleSelection('${level}', this.value)">
+                    <option value="">Select an option</option>
+                    <option value="Notes">Notes</option>
+                    <option value="Tutorial">YouTube Tutorial</option>
+                    <option value="Question-Bank">Question Bank</option>
+                    <option value="Answer-Sheet">Answer Sheet</option>
+                </select>`;
+        }
+
+        // Handle selection from dropdown
+        function handleSelection(level, option) {
+            let links = {
+                'Beginner': {
+                    'Notes': 'beginner notes.pdf',
+                    'Tutorial': 'https://youtu.be/KJgsSFOSQv0?si=41-Hl5rMJfWQPSiW',
+                    'Question-Bank': 'EasyQ.pdf',
+                    'Answer-Sheet': 'EasyA.pdf'
+                },
+                'Intermediate': {
+                    'Notes': 'middle notes.pdf',
+                    'Tutorial': 'https://youtu.be/zuegQmMdy8M?si=oCNODut4PZdZovsq',
+                    'Question-Bank': 'MedQ.pdf',
+                    'Answer-Sheet': 'MedA.pdf'
+                },
+                'Advanced': {
+                    'Notes': 'advanced notes.pdf',
+                    'Tutorial': 'https://youtu.be/B31LgI4Y4DQ?si=Y4cdbEhaC60Z6d-l',
+                    'Question-Bank': 'HardQ.pdf',
+                    'Answer-Sheet': 'HardA.pdf'
+                }
+            };
+            if (links[level][option]) {
+                window.open(links[level][option], '_blank');
+            } else {
+                alert("Please select a valid option.");
+            }
+        }
+
+        // JavaScript to hide level options
+        function hideLevelOptions() {
+            const options = document.getElementById('level-options');
+            options.style.display = 'none';
+        }
+    </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212; /* Dark background */
+            color: #e0e0e0; /* Light text color */
+            margin: 0;
+            padding: 20px;
+        }
+        header {
+            background-color: #1f1f1f; /* Darker header */
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+        }
+        .header-buttons {
+            margin-top: 15px;
+        }
+        .header-btn {
+            background-color: #007BFF; /* Blue color for buttons */
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 0 5px;
+            transition: background-color 0.3s ease;
+        }
+        .header-btn:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+        .description, .level-selection {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #1f1f1f; /* Dark background for sections */
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        h2 {
+            color: #007BFF; /* Bright blue for headings */
+        }
+        .btn {
+            background-color: #28a745; /* Green color for level buttons */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px;
+            transition: background-color 0.3s ease;
+        }
+        .btn:hover {
+            background-color: #218838; /* Darker green on hover */
+        }
+        /* Basic styles for the modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.7); /* Dark overlay */
+        }
+        .modal-content {
+            background-color: #2c2c2c; /* Dark modal background */
+            margin: auto;
+            padding: 20px;
+            border-radius: 8px;
+            width: 80%;
+            max-width: 500px; /* Limit modal width */
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            position:absolute; /* Center modal */
+             top :50%; left :50%; transform :translate(-50%,-50%);
+        }
+        .modal-content h3 {
+           margin-top: 0; /* Remove top margin */
+           color:#ffffff; /* White text for modal heading */
+       }
+       select {
+           width: calc(100% - 20px); /* Full width minus padding */
+           padding: 10px; /* Add padding */
+           border-radius: 5px; /* Rounded corners */
+           border: none; /* No border for a cleaner look */
+           background-color:#444444; /* Darker dropdown background */
+           color:#e0e0e0; /* Light text color in dropdown */
+           margin-top :10px; /* Space above select */
+       }
+       span.close {
+           cursor:pointer; float:right; font-size :24px; color:#aaa;
+       }
+       span.close:hover, span.close:focus {
+           color:red; text-decoration:none; cursor:pointer;
+       }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <h1>AtlasMind</h1>
+        <p>Welcome to AtlasMind! Your Gateway to Learning C Programming. Start your journey with our easy-to-follow, interactive courses!</p>
+        <div class="header-buttons">
+          <button onclick="logout()" class="header-btn">Logout</button>
+        </div>
+    </header>
+
+    <!-- Description Section -->
+    <section class="description">
+      <p> Welcome to AtlasMind, your dedicated platform for mastering C programming. Our structured curriculum is divided into three levels:
+      Beginner, Intermediate, and Advanced. This approach allows you to build your skills progressively,
+      starting from the basics of syntax and data types to more complex concepts like memory management and data structures.
+      Each level features interactive tutorials and hands-on coding challenges designed to reinforce your learning.
+      At AtlasMind, we foster a supportive community where you can connect with fellow learners and experienced developers.
+      Engage in discussions, share insights, and collaborate on projects through our forums.
+      With progress tracking features, you can monitor your achievements and earn badges as you advance.
+      Join us today and take the first step toward becoming a proficient C programmer! </p>
+    </section>
+
+    <!-- Levels Section -->
+    <section class="level-selection">
+      <div class="level-container">
+          <div class="level-text">
+              <h2>Select Level</h2>
+          </div>
+          <div class="buttons-container">
+              <button onclick="showLevelOptions('Beginner')" class="btn">Beginner Level</button>
+              <button onclick="showLevelOptions('Intermediate')" class="btn">Intermediate Level</button>
+              <button onclick="showLevelOptions('Advanced')" class="btn">Advanced Level</button>
+          </div>
+      </div>
+
+      <!-- Modal for Level Options -->
+      <div id="level-options" class="modal">
+          <div class="modal-content">
+              <span onclick="hideLevelOptions()" class="close">&times;</span>
+              <h3>You selected: <span id="selected-level"></span></h3>
+              <div id="level-dropdown"></div> <!-- Dropdown will be populated here -->
+          </div>
+      </div>
+    </section>
+</body>
+</html>

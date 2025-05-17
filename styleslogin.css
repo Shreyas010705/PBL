@@ -1,0 +1,186 @@
+/* Reset some default styling and set a font for the entire page */
+body {
+    margin: 0; 
+    font-family: Arial, sans-serif; 
+    background-image: url(AtlasPic3.jpg);
+    background-repeat: no-repeat;
+    background-size:cover;
+    background-position: center;
+    align-items: center;
+
+}
+
+/* Styles for the top bar */
+.top-bar {
+    backdrop-filter: blur(5px);
+    height: 15vh; 
+    display: flex; 
+    align-items: center; 
+    padding: 0 15px; 
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); 
+}
+
+/* Styles for the website name inside the top bar */
+.site-name {
+    color: #D5A848; 
+    font-size: 2rem; 
+    font-weight: bold; 
+    margin: 0; 
+}
+
+/* Styles for the login container */
+.login-container {
+    background: transparent; 
+    backdrop-filter: blur(20px); 
+    padding: 20px 30px; 
+    border: 2px solid rgba(255, 255, 255, .5); 
+    border-radius: 8px; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
+    width: 300px; 
+    text-align: center; 
+    margin: 50px auto; 
+}
+
+/* Logo image */
+.logo {
+    position: absolute; 
+    top: 0px; 
+    right: 0px; 
+    width: 130px; 
+    height: auto; 
+}
+
+/* Login icon styles */
+.login-container .login-icon {
+    font-size: 50px; 
+    color: #000000; 
+    margin-bottom: 20px; 
+}
+
+/* Input field styling inside the login container */
+.login-container input {
+    width: 100%; 
+    padding: 10px; 
+    margin: 10px 0; 
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
+    font-size: 16px; 
+    transition: border-color 0.3s ease;
+}
+
+/* Focus styling for input fields */
+.login-container input:focus {
+    border-color: #D5A848;
+    outline: none;
+}
+
+/* Button styling inside the login container */
+.login-container button {
+    width: 100%; 
+    padding: 10px; 
+    background-color: #000000; 
+    color: white; 
+    border: none; 
+    border-radius: 5px; 
+    font-size: 16px; 
+    cursor: pointer; 
+    transition: background-color 0.3s ease;
+}
+
+/* Hover effect for the login button */
+.login-container button:hover {
+    background-color: #344a60; 
+}
+
+/* Sign-up and forgot password link styling */
+.login-container a {
+    display: block; 
+    margin-top: 15px; 
+    color: #e7cfe7; 
+    text-decoration: none; 
+    font-size: 14px; 
+}
+
+.login-container a:hover {
+    text-decoration: underline; 
+}
+
+/* Forgot Password specific styling */
+.forgot-password {
+    margin-top: 5px;
+    font-size: 13px;
+    color: #ff5c5c;
+}
+
+.forgot-password:hover {
+    color: #ff3030;
+}
+
+/* Styling for error message */
+#error-message {
+    margin-top: 15px;
+    font-size: 14px;
+    font-weight: bold;
+    color: red;
+    display: none;
+}
+/* Access Code Modal Styling */
+.access-modal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    justify-content: center;
+    align-items: center;
+}
+
+.access-modal-content {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    border: 2px solid rgba(255, 255, 255, .5);
+    border-radius: 10px;
+    padding: 30px;
+    text-align: center;
+    width: 300px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.access-modal-content h2 {
+    color: #D5A848;
+    margin-bottom: 20px;
+}
+
+.access-modal-content input {
+    width: 90%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-bottom: 20px;
+    background: rgba(255, 255, 255, 0.3);
+    color: white;
+}
+
+.access-modal-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.access-modal-buttons button {
+    padding: 8px 16px;
+    background-color: #000000;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.access-modal-buttons button:hover {
+    background-color: #344a60;
+}
